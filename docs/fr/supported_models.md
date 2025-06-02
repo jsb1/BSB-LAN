@@ -32,6 +32,7 @@ Voici une liste de modèles de différents fabricants qui ont été testés dans
 - GS : UnoTec
 - Hansa : SND
 - Herz : Commotherm 5 DeLuxe
+- Hotjet: One2, Wx, ZETXe, ZETXi
 - Ideal: Logic Air Heat Pump
 - Interdomo : Domostar GBK 25H/SH
 - MAN/MHG : Ecostar 200
@@ -39,6 +40,7 @@ Voici une liste de modèles de différents fabricants qui ont été testés dans
 - Oilon : SH, SHx
 - Olymp : SHS, WHS
 - Palazzetti : Choro Sistema Calore
+- Robur: K18 Simplygas / Hybrigas
 - Sieger : TG11
 - Šildymo Technologijų Centras (ŠTC) : STC9
 - Sixmadun : TG11BE
@@ -51,6 +53,7 @@ Voici une liste de modèles de différents fabricants qui ont été testés dans
 - Thermics : Energie
 - Thermital : TBox Clima TOP
 - Tifell : Biofell
-- Viessmann : Vitotwin 300-W
+- Viadrus : Claudius K1, K2
+- Viessmann : Vitotwin 300-W (seulement !)
 - Wamak : AiWa, DB
 - Weishaupt : WTU

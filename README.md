@@ -55,6 +55,7 @@ Temperature and humidity sensors can also be connected and their data can also b
 - GS: UnoTec
 - Hansa: SND
 - Herz: Commotherm 5 DeLuxe
+- Hotjet: One2, Wx, ZETXe, ZETXi
 - Ideal: Logic Air Heat Pump
 - Interdomo: Domostar GBK 25H/SH
 - MAN/MHG: Ecostar 200
@@ -62,6 +63,7 @@ Temperature and humidity sensors can also be connected and their data can also b
 - Oilon: SH, SHx
 - Olymp: SHS, WHS
 - Palazzetti: Choro Sistema Calore
+- Robur: K18 Simplygas / Hybrigas
 - Sieger: TG11
 - Šildymo Technologijų Centras (ŠTC): STC9
 - Sixmadun: TG11BE
@@ -74,7 +76,8 @@ Temperature and humidity sensors can also be connected and their data can also b
 - Thermics: Energie
 - Thermital: TBox Clima TOP
 - Tifell: Biofell
-- Viessmann: Vitotwin 300-W
+- Viadrus : Claudius K1, K2
+- Viessmann: Vitotwin 300-W (exclusively!)
 - Wamak: AiWa, DB
 - Weishaupt: WTU  
 

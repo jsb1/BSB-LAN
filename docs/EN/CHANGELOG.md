@@ -2,6 +2,7 @@
 
 ##Current Master##
 
+- New configuration variable `mqtt_unit_set` defines how measurement units are sent via MQTT when using Rich JSON or auto-discovery: The default CF_MQTT_UNIT_LOCALIZED will send unit strings in the configured language, exactly as shown in the BSB-LAN web interface. CF_MQTT_UNIT_HOMEASSISTANT sends unit strings in the format used by Home Assistant to avoid warning messages about unknown unit strings. CF_MQTT_UNIT_NONE will send MQTT messags with no unit text. This setting only applies to MQTT and does not affect the web interface which will always show units in the localized language. When selecting Home Assistant as the unit format, the 'device_class' string will be sent for compatible parameters during MQTT auto-discovery so that automations can correctly identify sensor classes.
 - Configuration variable `replaceDisabled` defines the value for a deactivated/inactive status in parameters with numerical values. Defaults to `---`; Home Assistant expects `None` here, others might expect `0`. Keep in mind that both is inexact information, but depending on the circumstances, this might be the closest you would get if otherwise the external systems would not accept the data coming from BSB-LAN.
 - If you use the Arduino IDE 1.8.18 on Linux ARM, please take note that ESP32 framework version 3.0.7 is the last framework version that is currently running on these systems. We will try to make BSB-LAN compatible with both the most recent versions as well as 3.0.7, but once newer framework versions require changes in the code that break compatibility with 3.0.7, you will have to find other solutions to compile the code.
 
@@ -386,7 +387,7 @@ Example: `/JC=505,700,701,702,711,1600,1602`
 ##Version 0.32##
 **18.04.2017**  
 
-- lots of new parameters suppoerted
+- lots of new parameters supported
 - newly designed webinterface allows control over heating system without any additional software or cryptic URL commands. URL commands of course are still available, so no need to change anything when using FHEM etc.
 - German webinterface available with definement `LANG_DE`
 - new URL-command `/LB=x` to log only broadcast messages (x=1) or all bus messages (x=0)

@@ -384,7 +384,7 @@
 #define STR10100_TEXT "État du système"
 #define STR10101_TEXT "INFO production d’ECS"
 #define STR10102_TEXT "INFO chauffage 1 – en attente"
-#define STR10103_TEXT "INFO chauffage 2 – en attente
+#define STR10103_TEXT "INFO chauffage 2 – en attente"
 #define STR10104_TEXT "INFO chauffage 3/P – en attente"
 #define STR10200_TEXT "Commande inconnue"
 #define STR14081_TEXT "Durée actionneur ouverture/fermeture (convertisseur)"
@@ -475,6 +475,9 @@
 #define ENUM_MQTT_PLAIN_TEXT "Texte brut"
 #define ENUM_MQTT_JSON_TEXT "JSON"
 #define ENUM_MQTT_JSON2_TEXT "JSON enrichi"
+#define ENUM_MQTT_UNITS_LOCALIZED_TEXT "Localisé"
+#define ENUM_MQTT_UNITS_HOMEASSISTANT_TEXT "Home Assistant"
+#define ENUM_MQTT_UNITS_NONE_TEXT "Aucune"
 
 #define ENUM_WRITE_ENG_TEXT "Activé (standard)"
 #define ENUM_WRITE_OEM_TEXT "Activé (complet)"

@@ -58,6 +58,7 @@ Des capteurs de température et d’humidité peuvent également être connecté
 - GS: UnoTec
 - Hansa: SND
 - Herz: Commotherm 5 DeLuxe
+- Hotjet: One2, Wx, ZETXe, ZETXi
 - Ideal: Logic Air Heat Pump
 - Interdomo: Domostar GBK 25H/SH
 - MAN/MHG: Ecostar 200
@@ -65,6 +66,7 @@ Des capteurs de température et d’humidité peuvent également être connecté
 - Oilon: SH, SHx
 - Olymp: SHS, WHS
 - Palazzetti: Choro Sistema Calore
+- Robur: K18 Simplygas / Hybrigas
 - Sieger: TG11
 - Šildymo Technologijų Centras (ŠTC): STC9
 - Sixmadun: TG11BE
@@ -77,7 +79,8 @@ Des capteurs de température et d’humidité peuvent également être connecté
 - Thermics: Energie
 - Thermital: TBox Clima TOP
 - Tifell: Biofell
-- Viessmann: Vitotwin 300-W
+- Viadrus : Claudius K1, K2
+- Viessmann: Vitotwin 300-W (seulement !)
 - Wamak: AiWa, DB
 - Weishaupt: WTU  
 

@@ -384,7 +384,7 @@ UIStrings["STR9563_TEXT"] = "Consigne ventil. Charge continue ballon stratif";
 UIStrings["STR10100_TEXT"] = "État du système";
 UIStrings["STR10101_TEXT"] = "INFO production d’ECS";
 UIStrings["STR10102_TEXT"] = "INFO chauffage 1 – en attente";
-#define STR10103_TEXT "INFO chauffage 2 – en attente
+UIStrings["STR10103_TEXT"] = "INFO chauffage 2 – en attente";
 UIStrings["STR10104_TEXT"] = "INFO chauffage 3/P – en attente";
 UIStrings["STR10200_TEXT"] = "Commande inconnue";
 UIStrings["STR14081_TEXT"] = "Durée actionneur ouverture/fermeture (convertisseur)";
@@ -475,6 +475,9 @@ UIStrings["ENUM_DEBUG_TELNET_TEXT"] = "Telnet";
 UIStrings["ENUM_MQTT_PLAIN_TEXT"] = "Texte brut";
 UIStrings["ENUM_MQTT_JSON_TEXT"] = "JSON";
 UIStrings["ENUM_MQTT_JSON2_TEXT"] = "JSON enrichi";
+UIStrings["ENUM_MQTT_UNITS_LOCALIZED_TEXT"] = "Localisé";
+UIStrings["ENUM_MQTT_UNITS_HOMEASSISTANT_TEXT"] = "Home Assistant";
+UIStrings["ENUM_MQTT_UNITS_NONE_TEXT"] = "Aucune";
 
 UIStrings["ENUM_WRITE_ENG_TEXT"] = "Activé (standard)";
 UIStrings["ENUM_WRITE_OEM_TEXT"] = "Activé (complet)";
