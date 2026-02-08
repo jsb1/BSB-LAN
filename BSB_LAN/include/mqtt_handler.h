@@ -53,6 +53,9 @@ void mqtt_sendtoBroker(parameter param) {
   initStringBuffer(&sb_payload, MQTTPayload, sizeof(MQTTPayload));
   initStringBuffer(&sb_topic, MQTTTopic, sizeof(MQTTTopic));
   appendStringBuffer(&sb_topic, "%s/%d/%d/%g/status", MQTTTopicPrefix, (param.dest_addr==-1?bus->getBusDest():param.dest_addr), decodedTelegram.cat, param.number);
+  if (decodedTelegram.error != 0) {
+    strcpy(decodedTelegram.value, replaceDisabled);
+  }
   switch(mqtt_mode)
   {
     // =============================================
@@ -116,10 +119,16 @@ void mqtt_sendtoBroker(parameter param) {
       return;
   }
 
+/*
   // debugging..
+  if (mqtt_mode != 3 && decodedTelegram.error != 0) {
+    printFmtToDebug("MQTT Publish skipped for param %g due to query error %d\r\n", param.number, decodedTelegram.prognrdescaddr, decodedTelegram.value, decodedTelegram.unit_mqtt, decodedTelegram.error);
+    return;
+  }
+*/
   printFmtToDebug("Publishing to topic: %s\r\n", MQTTTopic);
   // Now publish the json payload only once
-  if (MQTTPubSubClient != NULL) {
+  if (MQTTPubSubClient != nullptr) {
     if (MQTTPubSubClient->connected()) {
       printFmtToDebug("Payload: %s\r\n", MQTTPayload);
       MQTTPubSubClient->publish(MQTTTopic, MQTTPayload, true);
@@ -141,7 +150,7 @@ void LogToMQTT (float line) {
   } else {
     param.dest_addr = current_dest;
   }
-  if ((LoggingMode & CF_LOGMODE_MQTT) && decodedTelegram.error == 0) {
+  if (LoggingMode & CF_LOGMODE_MQTT) {
     mqtt_sendtoBroker(param);
   }
 }
@@ -182,8 +191,17 @@ char* mqtt_get_will_topic() {
 
 bool mqtt_connect() {
   bool first_connect = false;
-  if(MQTTPubSubClient == NULL) {
-    mqtt_client = new ComClient();
+  if(MQTTPubSubClient == nullptr) {
+#if !defined(NO_TLS)
+    if (mqtt_broker_addr[0] >= '0' && mqtt_broker_addr[0] <= '9') { // IP address starting with a digit, use unsecure connection
+      mqtt_client = &netClient;
+    } else {
+      tlsClient.setCACertBundle(certs_bundle, certs_bundle_len);
+      mqtt_client = &tlsClient;
+    }
+#else
+    mqtt_client = &netClient;
+#endif
     MQTTPubSubClient = new PubSubClient(mqtt_client[0]);
     MQTTPubSubClient->setBufferSize(2048, 2048);
     MQTTPubSubClient->setKeepAlive(120); // raise to higher value so broker does not disconnect on latency
@@ -211,11 +229,11 @@ bool mqtt_connect() {
       mqtt_port = atoi(token);
     }
 
-    char* MQTTUser = NULL;
+    char* MQTTUser = nullptr;
     if(MQTTUsername[0]) {
       MQTTUser = MQTTUsername;
     }
-    const char* MQTTPass = NULL;
+    const char* MQTTPass = nullptr;
     if(MQTTPassword[0]) {
       MQTTPass = MQTTPassword;
     }
@@ -272,9 +290,8 @@ void mqtt_disconnect() {
       printlnToDebug("Dropping unconnected MQTT client");
     }
     delete MQTTPubSubClient;
-    MQTTPubSubClient = NULL;
+    MQTTPubSubClient = nullptr;
     mqtt_client->stop();
-    delete mqtt_client;
   }
 }
 
@@ -298,6 +315,7 @@ void mqtt_callback(char* topic, byte* passed_payload, unsigned int length) {
   uint8_t destAddr = bus->getBusDest();
   uint8_t save_my_dev_fam = my_dev_fam;
   uint8_t save_my_dev_var = my_dev_var;
+  uint16_t save_my_dev_oc = my_dev_oc;
   uint32_t save_my_dev_serial = my_dev_serial;
   uint8_t setmode = 0;  // 0 = send INF, 1 = send SET, 2 = query
   int topic_len = strlen(MQTTTopicPrefix);
@@ -333,7 +351,7 @@ void mqtt_callback(char* topic, byte* passed_payload, unsigned int length) {
       char* payload_copy = (char*)malloc(strlen(payload) + 1);
       strcpy(payload_copy, payload);
       token = strtok(payload_copy, ",");   // parameters to be updated are separated by a comma, parameters either in topic structure or parameter!device notation
-      while (token != NULL) {
+      while (token != nullptr) {
         while (token[0] == ' ') token++;
         if (token[0] == '/') {
           if (sscanf(token, "/%hd/%*d/%g",&param.dest_addr, &param.number) != 2) {
@@ -356,6 +374,7 @@ void mqtt_callback(char* topic, byte* passed_payload, unsigned int length) {
           bus->setBusType(bus->getBusType(), bus->getBusAddr(), destAddr);
           my_dev_fam = save_my_dev_fam;
           my_dev_var = save_my_dev_var;
+          my_dev_oc = save_my_dev_oc;
           my_dev_serial = save_my_dev_serial;
         }
         token = strtok(NULL, ",");   // next parameter
@@ -379,7 +398,7 @@ void mqtt_callback(char* topic, byte* passed_payload, unsigned int length) {
     param = parsingStringToParameter(payload);
     if (setmode < 2) {
       payload=strchr(payload,'=');
-      if (payload == NULL) {
+      if (payload == nullptr) {
         printFmtToDebug("MQTT message does not contain '=', discarding...\r\n");
         return;
       }
@@ -411,6 +430,7 @@ void mqtt_callback(char* topic, byte* passed_payload, unsigned int length) {
     bus->setBusType(bus->getBusType(), bus->getBusAddr(), destAddr);
     my_dev_fam = save_my_dev_fam;
     my_dev_var = save_my_dev_var;
+    my_dev_oc = save_my_dev_oc;
     my_dev_serial = save_my_dev_serial;
   }
 
@@ -521,8 +541,8 @@ bool mqtt_send_discovery(bool create=true) {
           }
         } else {
           if (decodedTelegram.type == VT_ONOFF || decodedTelegram.type == VT_YESNO) {
-            const char* value_on = NULL;
-            const char* value_off = NULL;
+            const char* value_on = nullptr;
+            const char* value_off = nullptr;
             if (decodedTelegram.type == VT_ONOFF) {
               value_on = STR_ON;
               value_off = STR_OFF;

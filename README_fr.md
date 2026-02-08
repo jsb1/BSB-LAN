@@ -12,7 +12,7 @@ The English version of this file is available [here](README.md).
 
 Avant de commencer, merci de lire le manuel [ici](https://docs.bsb-lan.de/fr/).
 
-BSB-LAN est une solution matérielle et logicielle permettant d’accéder au “Boiler-System-Bus” (BSB), au “Local-Process-Bus (LPB)” et à “l'interface point-à-point” (PPS). L’adaptateur est disponible pour divers microcontrôleurs basés sur ESP32 (ESP32 NodeMCU, Olimex EVB, Olimex POE-ISO) ainsi que pour un Arduino Due avec shield Ethernet. Il permet d’accéder aux systèmes de chauffage d’Atlantic, Brötje, Elco et de nombreux autres fabricants via LAN/WLAN, à condition qu’ils utilisent l’un des contrôleurs Siemens listés ci-dessous. BSB-LAN permet de piloter ou de réguler le chauffage et de journaliser différentes valeurs. Ce projet prend en charge presque tous les paramètres disponibles sur les systèmes de chauffage et constitue une alternative plus complète et économique aux modules OZW 672, OCI 700 ou Remocon Net B.
+BSB-LAN est une solution matérielle et logicielle permettant d’accéder au “Boiler-System-Bus” (BSB), au “Local-Process-Bus (LPB)” et à “l'interface point-à-point” (PPS). L’adaptateur est disponible pour divers microcontrôleurs basés sur ESP32 (ESP32 NodeMCU, Olimex EVB, Olimex POE-ISO) ainsi que pour un Arduino Due avec shield Ethernet. Il permet d’accéder aux systèmes de chauffage d’Atlantic, Brötje, Elco et de nombreux autres fabricants via LAN/WLAN, à condition qu’ils utilisent l’un des contrôleurs Siemens listés ci-dessous. Cela permet de contrôler ou réguler le chauffage et de logger n’importe quelles valeurs, ce qui rend cette passerelle compatible avec presque tous les paramètres disponibles sur les chaudières et utilisable pour une automatisation complète de la maison.
 
 ---
 
@@ -29,12 +29,12 @@ Des capteurs de température et d’humidité peuvent également être connecté
 
 **Ci-dessous, certaines séries de modèles de différents fabricants sont répertoriées, qui ont généralement installé des contrôleurs compatibles BSB-LAN :**  
 - Brötje: BBK, BBS, BGB, BLW (**voir les exceptions ci-dessous !**), BMK, BMR, BOB, BSK, BSW, Eurocontrol, ISR, LogoBloc, SGB, SOB, SPK, WBC (**voir les exceptions ci-dessous !**), WBS (**voir les exceptions ci-dessous !**), WGB (**voir les exceptions ci-dessous !**), WMC, WMS, WOB
-- **Modèles Brötje non fonctionnels : BOK, BLW Mono, BLW Neo, BLW Split, WBC 22.1/28.1, WBC 14.1/22.1, WGB-K 22.1/28.1, WGB 14.1/22.1/28.1/38.1, WHC, WHS, WLC, WLS et tous les autres avec contrôleur IWR**  
-- Bösch: heat pumps with RVS controller type
-- Elco: Aerotop (**pas Aerotop Mono !**), Aquatop, Rendamax, Straton, Thision (**pas Thision Mini!**), Thision S, Thision S Plus, Trigon S Plus
+- **Modèles Brötje non fonctionnels : BOK, BLW Eco, BLW Eco.2, BLW Mono, BLW Mono.1, BLW Neo, BLW Pro.1, BLW Split, BSW Neo, WBC 22.1/28.1, WBC 14.1/22.1, WGB-K 22.1/28.1, WGB 14.1/22.1/28.1/38.1, WHB, WHC, WHS, WLC, WLS et tous les autres avec contrôleur IWR**  
+- Bösch: pompes à chaleur avec contrôleur de type RVS
+- Elco: Aerotop (**pas EVO LN / Mono / Mono.2 / Split / Split.2 !**), Aquatop, Rendamax, Straton, Thision (**pas Thision Mini!**), Thision S, Thision S Plus, Trigon S Plus
 - Alarko: Aldens WM/WS
 - ATAG: QR
-- Atlantic: Alféa, Axeo, Excellia, Extensa, Hynea hybrid duo gaz, Navistem, Perfinox, Varmax
+- Atlantic: Axeo, Alféa Excellia A.I., AlféaExtensa A.I., Hynea hybrid duo gaz, Navistem, Perfinox, Varmax
 - Austria Email: LWP, LWPK
 - Baxi: Luna Platinum, Luna Duo, Block Kondens
 - Boesch: SLS
@@ -79,6 +79,7 @@ Des capteurs de température et d’humidité peuvent également être connecté
 - Thermics: Energie
 - Thermital: TBox Clima TOP
 - Tifell: Biofell
+- Variheat: 110C
 - Viadrus : Claudius K1, K2
 - Viessmann: Vitotwin 300-W (seulement !)
 - Wamak: AiWa, DB
@@ -86,7 +87,7 @@ Des capteurs de température et d’humidité peuvent également être connecté
 
 
 Si votre appareil de chauffage est équipé de l'un des contrôleurs suivants, mais que votre modèle n'est pas répertorié dans notre manuel, n'hésitez pas à nous contacter, car le fonctionnement de ces modèles a été confirmé :
-AVS37, AVS55, AVS71, AVS74, AVS75, AVS77, AVS79, LMS14, LMS15, LMS15, LMU64, LMU74, LMU75, RVA61, RVA63, RVA33, RVA36, RVA43, RVA46, RVA47, RVA53, RVA60, RVA61, RVA63, RVA65, RVA66, RVC32, RVD110, RVD115, RVD120, RVD125, RVD130, RVD135, RVD139, RVD140, RVD144, RVD145, RVD230, RVD235, RVD240, RVD245, RVD250, RVD255, RVD260, RVD265, RVL469, RVL470, RVL471, RVL472, RVL479, RVL480, RVL481, RVL482, RVP340, RVP350, RVP351, RVP360, RVP361, RVP5xx, RVS13, RVS21, RVS23, RVS26, RVS41, RVS43, RVS46, RVS47, RVS51, RVS53, RVS61, RVS63, RVS65, RVS68, RWI65, WRI80
+AVS37, AVS55, AVS71, AVS74, AVS75, AVS77, AVS79, LMS14, LMS15, LMS15, LMU64, LMU74, LMU75, RVA61, RVA63, RVA33, RVA36, RVA43, RVA46, RVA47, RVA53, RVA60, RVA61, RVA63, RVA65, RVA66, RVC32, RVD110, RVD115, RVD120, RVD125, RVD130, RVD135, RVD139, RVD140, RVD144, RVD145, RVD230, RVD235, RVD240, RVD245, RVD250, RVD255, RVD260, RVD265, RVL469, RVL470, RVL471, RVL472, RVL479, RVL480, RVL481, RVL482, RVP320, RVP330, RVP340, RVP350, RVP351, RVP360, RVP361, RVP5xx, RVS13, RVS21, RVS23, RVS26, RVS41, RVS43, RVS46, RVS47, RVS51, RVS53, RVS61, RVS63, RVS65, RVS68, RWI65, WRI80
 <BR><BR>
 
 <B>Attention !</B><BR>

@@ -4,7 +4,7 @@ English version can be found <A HREF="https://github.com/fredlcore/bsb_lan/blob/
 
 Das (englische) Handbuch findet sich [hier](https://docs.bsb-lan.de).
 
-BSB-LAN ist eine Software/Hardware-Lösung, um auf den "Boiler-System-Bus" (BSB), den "Local-Process-Bus (LPB)" und die "Punkt-zu-Punkt-Schnittstelle" (PPS) zuzugreifen. Es gibt den BSB-LAN Adapter für verschiedene *ESP32*-basierte Microcontroller (ESP32 NodeMCU, Olimex EVB, Olimex POE-ISO) bzw. für einen *Arduino Due* mit Ethernet-Shield, um damit web-basiert über LAN/WLAN auf Heizungssysteme von Atlantic, Brötje, Elco und vielen anderen Herstellern, die Siemens-Regler verwenden, zuzugreifen. Damit ist es möglich, die Heizung zu steuern bzw. zu regeln und beliebige Werte zu loggen. Dieses Projekt unterstützt fast alle an den Heizungen verfügbaren Parameter und kann in vielfältiger Hinsicht eine umfangreichere und kostengünstige Alternative zum OZW 672, OCI 700 oder Remocon Net B sein.
+BSB-LAN ist eine Software/Hardware-Lösung, um auf den "Boiler-System-Bus" (BSB), den "Local-Process-Bus (LPB)" und die "Punkt-zu-Punkt-Schnittstelle" (PPS) zuzugreifen. Es gibt den BSB-LAN Adapter für verschiedene *ESP32*-basierte Microcontroller (ESP32 NodeMCU, Olimex EVB, Olimex POE-ISO) bzw. für einen *Arduino Due* mit Ethernet-Shield, um damit web-basiert über LAN/WLAN auf Heizungssysteme von Atlantic, Brötje, Elco und vielen anderen Herstellern, die Siemens-Regler verwenden, zuzugreifen. Damit ist es möglich, die Heizung zu steuern bzw. zu regeln und beliebige Werte zu loggen, wobei dieses Gateway fast alle an den Heizungen verfügbaren Parameter unterstützt und zur umfangreichen Home Automation eingesetzt werden.
 
 ---
 
@@ -20,12 +20,12 @@ Zusätzlich können Temperatur- und Feuchtigkeitssensoren angeschlossen und dere
   
 **Im Folgenden werden einige Modellreihen verschiedener Hersteller aufgelistet, die i.d.R. BSB-LAN-kompatible Regler verbaut haben:**  
 - Brötje: BBK, BBS, BGB, BLW (**siehe Ausnahmen unten!**), BMK, BMR, BOB, BSK, BSW, Eurocontrol, ISR, LogoBloc, SGB, SOB, SPK, WBC (**siehe Ausnahmen unten!**), WBS (**siehe Ausnahmen unten!**), WGB (**siehe Ausnahmen unten!**), WMC, WMS, WOB
-- **Nicht funktionierende Brötje-Modelle: BOK, BLW Mono, BLW Neo, BLW Split, WBC 22.1/28.1, WBC 14.1/22.1, WGB-K 22.1/28.1, WGB 14.1/22.1/28.1/38.1, WHC, WHS, WLC, WLS und alle weiteren Modelle mit IWR Regelung** 
+- **Nicht funktionierende Brötje-Modelle: BOK, BLW Eco, BLW Eco.2, BLW Mono, BLW Mono.1, BLW Neo, BLW Pro.1, BLW Split, BSW Neo, WBC 22.1/28.1, WBC 14.1/22.1, WGB-K 22.1/28.1, WGB 14.1/22.1/28.1/38.1, WHB, WHC, WHS, WLC, WLS und alle weiteren Modelle mit IWR Regelung** 
 - Bösch: Wärmepumpen mit RVS-Controllertyp
-- Elco: Aerotop (**nicht Aerotop Mono!**), Aquatop, Rendamax, Straton, Thision (**nicht Thision Mini!**), Thision S, Thision S Plus, Trigon S Plus
+- Elco: Aerotop (**nicht EVO LN / Mono / Mono.2 / Split / Split.2!**), Aquatop, Rendamax, Straton, Thision (**nicht Thision Mini!**), Thision S, Thision S Plus, Trigon S Plus
 - Alarko: Aldens WM/WS
 - ATAG: QR
-- Atlantic: Alféa, Axeo, Excellia, Extensa, Hynea Hybrid Duo Gaz, Navistem, Perfinox, Varmax
+- Atlantic: Axeo, Alféa Excellia A.I., Alféa Extensa A.I., Hynea Hybrid Duo Gaz, Navistem, Perfinox, Varmax
 - Austria Email: LWP, LWPK
 - Baxi: Luna Platinum, Luna Duo, Block Kondens
 - Boesch: SLS
@@ -70,13 +70,14 @@ Zusätzlich können Temperatur- und Feuchtigkeitssensoren angeschlossen und dere
 - Thermics: Energie
 - Thermital: TBox Clima TOP
 - Tifell: Biofell
+- Variheat: 110C
 - Viadrus : Claudius K1, K2
 - Viessmann: Vitotwin 300-W (ausschließlich!)
 - Wamak: AiWa, DB
 - Weishaupt: WTU  
 
 Wenn Deine Heizung einen der folgenden Regler enthält, aber Dein Modell noch nicht aufgeführt ist, setze Dich gerne mit uns in Verbindung, da diese Regler als kompatibel mit einem der unterstützten Bussysteme identifiziert wurden:   
-AVS37, AVS55, AVS71, AVS74, AVS75, AVS77, AVS79, LMS14, LMS15, LMS15, LMU64, LMU74, LMU75, RVA61, RVA63, RVA33, RVA36, RVA43, RVA46, RVA47, RVA53, RVA60, RVA61, RVA63, RVA65, RVA66, RVC32, RVD110, RVD115, RVD120, RVD125, RVD130, RVD135, RVD139, RVD140, RVD144, RVD145, RVD230, RVD235, RVD240, RVD245, RVD250, RVD255, RVD260, RVD265, RVL469, RVL470, RVL471, RVL472, RVL479, RVL480, RVL481, RVL482, RVP340, RVP350, RVP351, RVP360, RVP361, RVP5xx, RVS13, RVS21, RVS23, RVS26, RVS41, RVS43, RVS46, RVS47, RVS51, RVS53, RVS61, RVS63, RVS65, RVS68, RWI65, WRI80
+AVS37, AVS55, AVS71, AVS74, AVS75, AVS77, AVS79, LMS14, LMS15, LMS15, LMU64, LMU74, LMU75, RVA61, RVA63, RVA33, RVA36, RVA43, RVA46, RVA47, RVA53, RVA60, RVA61, RVA63, RVA65, RVA66, RVC32, RVD110, RVD115, RVD120, RVD125, RVD130, RVD135, RVD139, RVD140, RVD144, RVD145, RVD230, RVD235, RVD240, RVD245, RVD250, RVD255, RVD260, RVD265, RVL469, RVL470, RVL471, RVL472, RVL479, RVL480, RVL481, RVL482, RVP320, RVP330, RVP340, RVP350, RVP351, RVP360, RVP361, RVP5xx, RVS13, RVS21, RVS23, RVS26, RVS41, RVS43, RVS46, RVS47, RVS51, RVS53, RVS61, RVS63, RVS65, RVS68, RWI65, WRI80
 
 <B>Achtung!</B><BR>
 Einige Hersteller, die vormals auf BSB/LPB gesetzt haben, sind bei "günstigeren" Geräten auf andere Bus-Systeme gewechselt. Beispiele hierfür sind die Brötje WLC/WLS/BOK Geräte. Diese sind nicht kompatibel mit BSB/LPB und erlauben nur die Einstellung von wenigen Parametern durch den Benutzer. Besitzer dieser Geräte sind bis dato nicht in der Lage ihr Heizungssystem zu konfigurieren und zu überwachen, wie dies mit teureren (aber BSB/LPB-kompatiblen) Geräten, wie z.B. den oben genannten, möglich ist.

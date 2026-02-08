@@ -13,9 +13,11 @@ By the way: If you only have one connector and it is already occupied with a roo
 |**LMS14**<br>**LMS15**<br>Baxi Luna Platinum,<br>Chappee Klista|<img src="../images/LMS15 Baxi Platinum.jpeg"><img src="../images/LMS15 Chappee Klista.jpeg"><img src="../images/LMS15 Baxi Platinum Mainboard.jpeg">|BSB connection:<br>Terminal block M2<br>Pin 2: CL-<br>Pin 3: CL+<br>See detailed instructions here for <a href="https://github.com/fredlcore/BSB-LAN/wiki/Special-instructions-for-special-heating-systems#js-repo-pjax-container">Baxi Luna Platinum</a>.|
 |[](){#LMU64}**LMU54**<br>**LMU64** |<img src="../images/LMU64.jpeg">|LPB connection:<br>via additional OCI420 plugin, see [details below][OCI420].|
 |[](){#LMU74}**LMU74**<br>**LMU75** |<img src="../images/LMU74.jpeg">|BSB connection:<br>**+** = Top<br>**-** = Center<br>LPB connection:<br>via additional OCI420 plugin|
+|[](){#RVA33}**RVA33** |<img src="../images/RVA33.jpeg">|PPS connection: A6/MD|
 |[](){#RVA53}**RVA53** |<img src="../images/RVA53.jpeg">|PPS connection: A6/MD|
 |[](){#RVA63}**RVA63** |<img src="../images/RVA63.jpeg">|LPB connection: MB/DB<br>PPS connection: A6/MD|
 |[](){#RVA66}**RVA66** |<img src="../images/RVA66 EuroControl MSR.jpeg">|LPB connection: MB/DB<br>PPS connection: A6/MD|
+|[](){#RVD120}**RVD120**|<img src="../images/RVD120.jpeg">|PPS connection: A6/M|
 |[](){#RVP54}**RVP54** |<img src="../images/RVP54.jpeg">|PPS connection: A6/M|
 |[](){#RVS13}**RVS13** |<img src="../images/RVS13.jpeg">|BSB connection: CL+/CL-|
 |[](){#RVS21}**RVS21** |<img src="../images/RVS21.jpeg">|BSB connection via connector X86<br>**+** = rightmost pin<BR>**-** = second pin from right<br><br>If there is a sticker telling you to connect the device to pins 2 and 3 on X86, **IGNORE THAT**! This is only for supplying power for the Navilink A59 and is not a regular wired room-unit!|
@@ -54,3 +56,5 @@ Then you need to set the LPB address of the OCI420 in parameters 605 (needs to b
 There are a many more controllers that are likely to work with BSB-LAN. Look out for these Siemens controller models in your heating system: 
 
 --8<-- "docs/en/list_of_controllers.md"
+
+**Attention**: The Siemens LMU34 is **NOT** compatible with BSB-LAN as this controller only has an OpenTherm interface.

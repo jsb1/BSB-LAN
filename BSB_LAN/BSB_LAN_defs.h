@@ -335,6 +335,7 @@ const char STR_SELECTED[] = "' selected>";
 
 const char STR_BIT[] = "BIT";
 const char STR_BYTE[] = "BYTE";
+const char STR_BYTE2[] = "BYTE2";
 const char STR_BYTE5[] = "BYTE5";
 const char STR_BYTE10[] = "BYTE10";
 const char STR_CLOSEDOPEN[] = "CLOSEDOPEN";
@@ -359,6 +360,7 @@ const char STR_TEMP_SHORT5[] = "TEMP_SHORT5";
 const char STR_TEMP_SHORT5_US[] = "TEMP_SHORT5_US";
 const char STR_TEMP_SHORT64[] = "TEMP_SHORT64";
 const char STR_TEMP_PER_MIN[] = "TEMP_PER_MIN";
+const char STR_TEMP_PER_HOUR[] = "TEMP_PER_HOUR";
 const char STR_VOLTAGE[] = "VOLTAGE";
 const char STR_VOLTAGEONOFF[] = "VOLTAGEONOFF";
 const char STR_WEEKDAY[] = "WEEKDAY";
@@ -418,6 +420,7 @@ const char STR_LITERPERHOUR100[] = "LITERPERHOUR100";
 const char STR_LITERPERMIN[] = "LITERPERMIN";
 const char STR_LPM_SHORT[] = "LPM_SHORT";
 const char STR_UINT[] = "UINT";
+const char STR_UINT_HALF[] = "UINT_HALF";
 const char STR_UINT2[] = "UINT2";
 const char STR_UINT5[] = "UINT5";
 const char STR_UINT10[] = "UINT10";
@@ -487,6 +490,7 @@ typedef enum {
   UNIT_GRADIENT,
   UNIT_GRADIENTKS,
   UNIT_TEMP_PER_MIN,
+  UNIT_TEMP_PER_HOUR,
   UNIT_INTEGRAL,
   UNIT_CEL_MIN,
   UNIT_LITER,
@@ -528,6 +532,7 @@ const char* const U_HOMEASSISTANT[] = {
   "min/K",  // UNIT_GRADIENT
   "K/s",    // UNIT_GRADIENTKS
   "°C/min", // UNIT_TEMP_PER_MIN
+  "°C/h",   // UNIT_TEMP_PER_HOUR
   "Kmin",   // UNIT_INTEGRAL
   "°Cmin",  // UNIT_CEL_MIN
   "L",      // UNIT_LITER
@@ -568,6 +573,7 @@ const char* const U_LOCALIZED[] = {
   UNIT_GRADIENT_TEXT,     // UNIT_GRADIENT
   UNIT_GRADIENTKS_TEXT,   // UNIT_GRADIENTKS
   UNIT_TEMP_PER_MIN_TEXT, // UNIT_TEMP_PER_MIN
+  UNIT_TEMP_PER_HOUR_TEXT,// UNIT_TEMP_PER_MIN
   UNIT_INTEGRAL_TEXT,     // UNIT_INTEGRAL
   UNIT_CEL_MIN_TEXT,      // UNIT_CEL_MIN
   UNIT_LITER_TEXT,        // UNIT_LITER
@@ -611,7 +617,7 @@ typedef struct {
 cmd_t heating_cmdtbl[MAX_HEATINGTBL] = {};
 uint16_t heating_cmdtbl_size = 0;
 uint16_t active_cmdtbl_size = 0;
-const cmd_t* active_cmdtbl = NULL;
+const cmd_t* active_cmdtbl = nullptr;
 
 typedef struct {
   uint8_t type;
@@ -641,6 +647,7 @@ typedef enum{
   VT_BYTE5_N,           //  2 Byte - 1 enable 0x06 / value/5
   VT_BYTE10,            //  2 Byte - 1 enable 0x01 / value/10
   VT_BYTE10_N,          //  2 Byte - 1 enable 0x01 / value/10
+  VT_BYTE2,             //  2 Byte - 1 enable 0x01 / value/2
   VT_CLOSEDOPEN,        //  2 Byte - 1 enable 0x01 / 0=Offen 1=Geschlossen Choice
   VT_DAYS,              //  2 Byte - 1 enable 0x01 / day
   VT_ENUM,              //* 2 Byte - 1 enable 0x01 / value        Choice
@@ -724,6 +731,7 @@ typedef enum{
   VT_PROPVAL,           //  3 Byte - 1 enable / value/16
   VT_PPM,               //  2 Byte - 1 enable 0x   / ppm/1 signed
   VT_CEL_PER_MIN_WORD,  //  3 Byte - 1 enable / k/min
+  VT_TEMP_PER_HOUR,     //  2 Byte - 1 enable 0x06 / value
   VT_MSECONDS_WORD,     //  3 Byte - 1 enable / seconds
   VT_MSECONDS_WORD_N,   //  3 Byte - 1 enable / seconds
   VT_SECONDS_WORD,      //  3 Byte - 1 enable / seconds
@@ -757,6 +765,7 @@ typedef enum{
   VT_LITERPERMIN_N,     //  3 Byte - 1 enable / value / 10
   VT_UINT,              //  3 Byte - 1 enable 0x01 / value
   VT_UINT_N,            //  3 Byte - 1 enable 0x06 / value
+  VT_UINT_HALF,         //  3 Byte - 1 enable 0x01 / value / 2
   VT_UINT2_N,           //  3 Byte - 1 enable / value / 5
   VT_UINT5,             //  3 Byte - 1 enable / value * 5
   VT_UINT10,            //  3 Byte - 1 enable / value / 10
@@ -776,6 +785,7 @@ typedef enum{
   VT_HOURS,             //  5 Byte - 1 enable / seconds/3600
   VT_HOURS_N,           //  5 Byte - 6 enable / seconds/3600
   VT_MINUTES,           //  5 Byte - 1 enable 0x01 / seconds/60
+  VT_MINUTES_N,         //  5 Byte - 1 enable 0x06 / seconds/60
   VT_SECONDS_DWORD,     //  5 Byte - 1 enable 0x01 / seconds
   VT_POWER,             //  5 Byte - 1 enable / value/10 kW
   VT_POWER100,          //  5 Byte - 1 enable / value/100 kW
@@ -815,6 +825,7 @@ const units optbl[]={
 {VT_BYTE5_N,          5.0,    6, 1,        DT_VALS, 0,  UNIT_NONE,         STR_BYTE5            },
 {VT_BYTE10,           10.0,   1, 1,        DT_VALS, 1,  UNIT_NONE,         STR_BYTE10           },
 {VT_BYTE10_N,         10.0,   6, 1,        DT_VALS, 1,  UNIT_NONE,         STR_BYTE10           },
+{VT_BYTE2,            2.0,    1, 1,        DT_VALS, 1,  UNIT_NONE,         STR_BYTE2            },
 {VT_CLOSEDOPEN,       1.0,    1, 1,        DT_ENUM, 0,  UNIT_NONE,         STR_CLOSEDOPEN       },
 {VT_DAYS,             1.0,    1, 1,        DT_VALS, 0,  UNIT_DAYS,         STR_DAYS             },
 {VT_ENUM,             1.0,    1, 1,        DT_ENUM, 0,  UNIT_NONE,         STR_ENUM             },
@@ -898,6 +909,7 @@ const units optbl[]={
 {VT_PROPVAL,          16.0,   1, 2,        DT_VALS, 2,  UNIT_NONE,         STR_PROPVAL          },
 {VT_PPM,              1.0,    0, 2,        DT_VALS, 0,  UNIT_PPM,          STR_PPM              },
 {VT_CEL_PER_MIN_WORD, 1.0,    1, 2,        DT_VALS, 0,  UNIT_SEC,          STR_TEMP_PER_MIN     },
+{VT_TEMP_PER_HOUR,    1.0,    6, 1,        DT_VALS, 0,  UNIT_TEMP_PER_HOUR,STR_TEMP_PER_HOUR    },
 {VT_MSECONDS_WORD,    1.0,    1, 2,        DT_VALS, 0,  UNIT_SEC,          STR_MSECONDS_WORD    },
 {VT_MSECONDS_WORD_N,  1.0,    6, 2,        DT_VALS, 0,  UNIT_SEC,          STR_MSECONDS_WORD    },
 {VT_SECONDS_WORD,     1.0,    1, 2,        DT_VALS, 0,  UNIT_SEC,          STR_SECONDS_WORD     },
@@ -931,6 +943,7 @@ const units optbl[]={
 {VT_LITERPERMIN_N,    10.0,   6, 2,        DT_VALS, 1,  UNIT_LITERPERMIN,  STR_LITERPERMIN      },
 {VT_UINT,             1.0,    1, 2,        DT_VALS, 0,  UNIT_NONE,         STR_UINT             },
 {VT_UINT_N,           1.0,    6, 2,        DT_VALS, 0,  UNIT_NONE,         STR_UINT             },
+{VT_UINT_HALF,        2.0,    6, 2,        DT_VALS, 0,  UNIT_NONE,         STR_UINT_HALF       },
 {VT_UINT2_N,          5.0,    6, 2,        DT_VALS, 1,  UNIT_NONE,         STR_UINT2            },
 {VT_UINT5,            0.2,    1, 2,        DT_VALS, 0,  UNIT_NONE,         STR_UINT5            },
 {VT_UINT10,           10.0,   6, 2,        DT_VALS, 1,  UNIT_NONE,         STR_UINT10           },
@@ -950,9 +963,10 @@ const units optbl[]={
 {VT_HOURS,            3600.0, 1, 4,        DT_VALS, 0,  UNIT_HOUR,         STR_HOURS            },
 {VT_HOURS_N,          3600.0, 6, 4,        DT_VALS, 0,  UNIT_HOUR,         STR_HOURS            },
 {VT_MINUTES,          60.0,   1, 4,        DT_VALS, 0,  UNIT_MIN,          STR_MINUTES          },
+{VT_MINUTES_N,        60.0,   6, 4,        DT_VALS, 0,  UNIT_MIN,          STR_MINUTES          },
 {VT_SECONDS_DWORD,    1.0,    1, 4,        DT_VALS, 0,  UNIT_SEC,          STR_SECONDS_DWORD    },
 {VT_POWER,            10.0,   1, 4,        DT_VALS, 1,  UNIT_KW,           STR_POWER            },
-{VT_POWER100,         100.0,  0, 4,        DT_VALS, 2,  UNIT_KW,           STR_POWER100         },
+{VT_POWER100,         100.0,  1, 4,        DT_VALS, 2,  UNIT_KW,           STR_POWER100         },
 {VT_ENERGY10,         10.0,   1, 4,        DT_VALS, 1,  UNIT_KWH,          STR_ENERGY10         },
 {VT_ENERGY10_N,       10.0,   6, 4,        DT_VALS, 1,  UNIT_KWH,          STR_ENERGY10         },
 {VT_ENERGY,           1.0,    1, 4,        DT_VALS, 0,  UNIT_KWH,          STR_ENERGY           },
@@ -1171,18 +1185,30 @@ const char ENUM_ONOFF7[] = {
 "\x07\x00 " MENU_TEXT_OFF "\0"
 "\x07\xFF " MENU_TEXT_ON
 };
+const char ENUM_ONOFF8[] = {
+"\x08\x00 " MENU_TEXT_OFF "\0"
+"\x08\xFF " MENU_TEXT_ON
+};
+const char ENUM_ONOFF9[] = {
+"\x09\x00 " MENU_TEXT_OFF "\0"
+"\x09\xFF " MENU_TEXT_ON
+};
+const char ENUM_ONOFF10[] = {
+"\x0A\x00 " MENU_TEXT_OFF "\0"
+"\x0A\xFF " MENU_TEXT_ON
+};
 
 const char ENUM_CUSTOM01[] = {
 "\x00\x01 "
 };
 const char ENUM_CUSTOM02[] = {
-  "\x00\x02 "
+"\x00\x02 "
 };
 const char ENUM_CUSTOM11[] = {
 "\x01\x01 "
 };
 const char ENUM_CUSTOM21[] = {
-  "\x02\x01 "
+"\x02\x01 "
 };
 const char ENUM_CUSTOM31[] = {
 "\x03\x01 "
@@ -1197,22 +1223,22 @@ const char ENUM_CUSTOM54[] = {
 "\x05\x04 "
 };
 const char ENUM_CUSTOM61[] = {
-  "\x06\x01 "
-  };
+"\x06\x01 "
+};
 const char ENUM_CUSTOM71[] = {
 "\x07\x01 "
 };
 const char ENUM_CUSTOM81[] = {
-  "\x08\x01 "
-  };
+"\x08\x01 "
+};
 const char ENUM_CUSTOM91[] = {
 "\x09\x01 "
 };
 const char ENUM_CUSTOM101[] = {
-  "\x0a\x01 "
+"\x0a\x01 "
 };
 const char ENUM_CUSTOM111[] = {
-  "\x0b\x01 "
+"\x0b\x01 "
 };
 
 //TODO: Move to translations
@@ -1283,6 +1309,11 @@ const char ENUM15046[] = {
 // 0x53 = QAA70, 0x52 = QAA50, 0x37 = QAA95, 0x4D = QAW10, 0x4E = QAW20, 0x58 = MCBA/REA70/DC225, 0x5A = QAA10, 0x5B = QAA20, 0x5D = QAA12/13, 0x66 = BMU, 0x43 = RVD130
 
 #include "BSB_LAN_custom_defs.h"
+
+{0x053D006B,  VT_CUSTOM_BYTE,     10196, S_ERROR,  sizeof(ENUM_CUSTOM01), ENUM_CUSTOM01, FL_RONLY, 255, 255}, // Current error code (legacy (8 bit) indexing)
+{0x053D006B,  VT_CUSTOM_BYTE,     10197, S_ERRPRIO,sizeof(ENUM_CUSTOM11), ENUM_CUSTOM11, FL_RONLY, 255, 255}, // Error code priority
+{0x053D009A,  VT_CUSTOM_BYTE,     10198, S_ERROR,  sizeof(ENUM_CUSTOM02), ENUM_CUSTOM02, FL_RONLY, 255, 255}, // Current error code 1 and 2: Bytes 0 and 1 / 6 and 7: current error code; bytes 2 and 8: priority (same as 10197); bytes 3 and 9: LPB source addres of error; bytes 4-5 and 10-11: unknown
+{0x053D009C,  VT_CUSTOM_BYTE,     10199, S_MAINT,  sizeof(ENUM_CUSTOM01), ENUM_CUSTOM01, FL_RONLY, 255, 255}, // Current maintenance code 1 and 2: Bytes 0 / 5: maintainance code; byte 1 and 6: priority; byte 2 and 7: LPB source address of maintenance cause; bytes 3-4 and 8-9: unknown
 
 //PPS-Bus commands
 #define PPS_BA  0

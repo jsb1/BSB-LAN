@@ -3,12 +3,12 @@
 Voici une liste de modèles de différents fabricants qui ont été testés dans le passé avec BSB-LAN. Veuillez noter que les fabricants peuvent à tout moment modifier les spécifications techniques, y compris le contrôleur, sans changer le nom du modèle (ou seulement une très petite partie de celui-ci). Lorsque nous sommes informés d'un tel changement, nous le mentionnons ici, mais il est évident que cette liste n'est pas complète dans les deux sens. Dans tous les cas, fais toi-même une vérification finale pour t'assurer que ton système de chauffage dispose des connecteurs nécessaires pour utiliser BSB-LAN.
 
 - Brötje : BBK, BBS, BGB, BLW (**voir les exceptions ci-dessous!**), BMK, BMR, BOB, BSK, BSW, Eurocontrol, ISR, LogoBloc, SGB, SOB, SPK, WBC (**voir les exceptions ci-dessous!**), WBS (**voir les exceptions ci-dessous!**), WGB (**voir les exceptions ci-dessous!**), WMC, WMS, WOB
-- **Modèles Brötje non fonctionnels : BOK, BLW Mono, BLW Neo, BLW Split, WBC 22.1/28.1, WBC 14.1/22.1, WGB-K 22.1/28.1, WGB 14.1/22.1/28.1/38.1, WHC, WHS, WLC, WLS et tous avec contrôleur IWR**
+- **Modèles Brötje non fonctionnels : BOK, BLW Eco, BLW Eco.2, BLW Mono, BLW Mono.1, BLW Neo, BLW Pro.1, BLW Split, BSW Neo, WBC 22.1/28.1, WBC 14.1/22.1, WGB-K 22.1/28.1, WGB 14.1/22.1/28.1/38.1, WHB, WHC, WHS, WLC, WLS et tous avec contrôleur IWR**
 - Bösch : pompes à chaleur avec contrôleur de type RVS
-- Elco : Aerotop (**pas Aerotop Mono!**), Aquatop, Rendamax, Straton, Thision (**pas Thision Mini!**), Thision S, Thision S Plus, Trigon S Plus
+- Elco : Aerotop (**pas EVO LN / Mono / Mono.2 / Split / Split.2!**), Aquatop, Rendamax, Straton, Thision (**pas Thision Mini!**), Thision S, Thision S Plus, Trigon S Plus
 - Alarko: Aldens WM/WS
 - ATAG : QR
-- Atlantic : Alféa, Axeo, Excellia, Extensa, Hynea hybrid duo gaz, Navistem, Perfinox, Varmax
+- Atlantic : Axeo, Alféa Excellia A.I., Alféa Extensa A.I., Hynea hybrid duo gaz, Navistem, Perfinox, Varmax
 - Austria Email : LWP, LWPK
 - Baxi : Luna Platinum, Luna Duo, Block Kondens
 - Boesch : SLS
@@ -53,6 +53,7 @@ Voici une liste de modèles de différents fabricants qui ont été testés dans
 - Thermics : Energie
 - Thermital : TBox Clima TOP
 - Tifell : Biofell
+- Variheat: 110C
 - Viadrus : Claudius K1, K2
 - Viessmann : Vitotwin 300-W (seulement !)
 - Wamak : AiWa, DB

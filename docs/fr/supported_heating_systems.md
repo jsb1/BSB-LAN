@@ -15,8 +15,10 @@ D'ailleurs : Si tu n'as qu'un seul connecteur et qu'il est déjà occupé par un
 |**LMS14**<br>**LMS15**<br>Baxi Luna Platinum,<br>Chappee Klista|<img src="../images/LMS15 Baxi Platinum.jpeg"><img src="../images/LMS15 Chappee Klista.jpeg"><img src="../images/LMS15 Baxi Platinum Mainboard.jpeg">|Connexion BSB :<br>Bornier M2<br>Broche 2 : CL-<br>Broche 3 : CL+<br>Consultez les instructions détaillées ici pour <a href="https://github.com/fredlcore/BSB-LAN/wiki/Special-instructions-for-special-heating-systems#js-repo-pjax-container">Baxi Luna Platinum</a>.|
 |[](){#LMU64}**LMU54**<br>**LMU64**|<img src="../images/LMU64.jpeg">|Connexion LPB :<br>via le plugin OCI420 supplémentaire, voir [détails ci-dessous][OCI420].|
 |[](){#LMU74}**LMU74**<br>**LMU75**|<img src="../images/LMU74.jpeg">|Connexion BSB :<br>**+** = Haut<br>**-** = Centre<br>Connexion LPB :<br>via le plugin OCI420 supplémentaire|
+|[](){#RVA33}**RVA33**|<img src="../images/RVA33.jpeg">|Connexion PPS : A6/MD|
 |[](){#RVA53}**RVA53**|<img src="../images/RVA53.jpeg">|Connexion PPS : A6/MD|
 |[](){#RVA63}**RVA63**|<img src="../images/RVA63.jpeg">|Connexion LPB : MB/DB<br>Connexion PPS : A6/MD|
+|[](){#RVD120}**RVD120**|<img src="../images/RVD120.jpeg">|Connexion PPS : A6/M|
 |[](){#RVP54}**RVP54**|<img src="../images/RVP54.jpeg">|Connexion PPS : A6/M|
 |[](){#RVS13}**RVS13**|<img src="../images/RVS13.jpeg">|Connexion BSB : CL+/CL-|
 |[](){#RVS21}**RVS21**|<img src="../images/RVS21.jpeg">|Connexion BSB via le connecteur X86<br>**+** = broche la plus à droite<BR>**-** = deuxième broche à partir de la droite<br><br>S’il y a une étiquette te disant de connecter l’appareil aux broches 2 et 3 sur X86, **IGNORE-LA** ! C’est uniquement pour alimenter le Navilink A59, ce n’est pas une vraie sonde déportée avec communication !|
@@ -55,3 +57,5 @@ Ensuite, tu dois définir l'adresse LPB de l'OCI420 dans les paramètres 605 (do
 Il existe de nombreux autres contrôleurs qui sont susceptibles de fonctionner avec BSB-LAN. Fais attention à ces modèles de contrôleurs Siemens dans ton système de chauffage :
 
 --8<-- "docs/en/list_of_controllers.md"
+
+**Attention** : Le Siemens LMU34 **n’est PAS** compatible avec BSB-LAN, car ce contrôleur dispose uniquement d’une interface OpenTherm.

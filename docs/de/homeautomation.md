@@ -16,8 +16,9 @@ Für einige Systeme gibt es spezifische Module, die verwendet werden können, um
 [](){#HomeAssistant}
 ### Home Assistant
 
-Während das offizielle Plugin nicht mehr funktioniert, funktioniert der MQTT-Ansatz (siehe unten) gut mit Home Assistant, einschließlich der Auto-Discovery-Funktion.
-Hier ist ein Link zu einem [Video im BSB-LAN YouTube-Kanal](https://youtu.be/DbHEiWm5nBs), das zeigt, wie man BSB-LAN in Home Assistant mithilfe der Auto-Discovery-Funktion von Home Assistant einrichtet.
+GitHub-User @liudger hat ein [Plug-In](https://www.home-assistant.io/integrations/bsblan/) entwickelt, das Teil von Home Assistant geworden ist. Vielen Dank dafür! Ich kann jedoch **keinen** Support dafür leisten - alle Fragen und Probleme sind **ausschließlich** über die entsprechende Projektseite zu klären!
+
+Der MQTT-Ansatz (siehe unten) funktioniert gut mit Home Assistant, einschließlich der Auto-Discovery-Funktion und wird offiziell für das Projekt empfohlen. Hier ist ein Link zu einem [Video im BSB-LAN YouTube-Kanal](https://youtu.be/DbHEiWm5nBs), das zeigt, wie man BSB-LAN in Home Assistant mithilfe der Auto-Discovery-Funktion von Home Assistant einrichtet.
 
 Für weitere Details zur Implementierung kannst du auch auf diese Tutorials verweisen:
 
@@ -26,6 +27,8 @@ GitHub-User @ryann72 hat detaillierte Anweisungen für [BSB-LAN und HomeAssistan
 YouTuber @StoneTime hat zwei Videos (in Deutsch) erstellt, in denen er die [Installation von BSB-LAN](https://www.youtube.com/watch?v=n-5I-TUzXuk) sowie die [Einrichtung in Home Assistant](https://www.youtube.com/watch?v=R2Q-_flTPvk) zeigt. Vielen Dank!
 
 YouTuber @ArminasTV hat zwei Videos (in Französisch) erstellt, in denen er die [Installation von BSB-LAN](https://www.youtube.com/watch?v=5lNgNYlZ7M0&t=0s) sowie die Einrichtung mit [Home Assistant und MQTT](https://www.youtube.com/watch?v=WtmKPo1xMio&t=411s) zeigt. Merci beaucoup!
+
+GitHub-User @vincent2mots hat eine Anleitung erstellt, wie man [BSB-LAN mit Google Home über Home Assistant](https://github.com/vincent2mots/domotique) verbindet. Merci!  
 
 [](){#Homebridge}
 ### Homebridge
@@ -95,7 +98,8 @@ In BSB-LAN musst du mindestens die folgenden Konfigurationen vornehmen oder akti
 - Setze die **MQTT-Nutzung** auf **Plain Text**.
 - Setze den **MQTT-Broker-Server** auf den Hostnamen deines MQTT-Brokers (z.B. den Mosquitto-Server).
 
-Wenn dein Heimautomatisierungssystem MQTT Auto-Discovery unterstützt (wie bei Home Assistant), kannst du den URL-Befehl `/M1!<x>` aufrufen und BSB-LAN wird Auto-Discovery-Nachrichten für **alle verfügbaren Parameter** vom Gerät mit der ID `<x>` an den MQTT-Broker und damit an das Heimautomatisierungssystem senden. Möglicherweise musst du danach aufräumen oder eine Löschnachricht für alle diese Parameter mit dem URL-Befehl `/M0!<x>` senden, wenn du diese Funktion nicht mehr verwenden möchtest.
+Wenn dein Heimautomatisierungssystem MQTT Auto-Discovery unterstützt (wie bei Home Assistant), kannst du den URL-Befehl `/M1!<x>` aufrufen und BSB-LAN wird Auto-Discovery-Nachrichten für **alle verfügbaren Parameter** vom Gerät mit der ID `<x>` an den MQTT-Broker und damit an das Heimautomatisierungssystem senden. Bitte beachte, dass alle Parameter als nur lesbar übermittelt werden, solange in den BSB-LAN Einstellungen der Schreibschutz für Parameter aktiv ist. Wenn diese Einstellung später in BSB-LAN geändert wird, muss man den Auto-Discovery-Prozess erneut starten.  
+Möglicherweise musst du danach aufräumen oder eine Löschnachricht für alle diese Parameter mit dem URL-Befehl `/M0!<x>` senden, wenn du diese Funktion nicht mehr verwenden möchtest.
 
 Wenn du deine eigenen Verbindungsdetails einrichten möchtest, ist die Topic-Struktur von BSB-LAN wie folgt:
 `<BSB-LAN MQTT Topic>/<Geräte-ID>/<Kategorie-Nr.>/<Parameter-Nr.>`

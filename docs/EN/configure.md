@@ -50,6 +50,8 @@ table th:nth-of-type(4) {
 |Energy saving|`esp32_save_energy`|Reduces speed, saves energy. Do not enable when using WiFi.|**On** (`true`)<br>**Off** (`false`)|
 |Webserver file system|`webserver`|Enables serving files from SD card|**On** (`true`)<br>**Off** (`false`)|
 |-            |`#define DEFAULT_FLAG`|Set read/write access to heating system. `FL_RONLY` sets all parameters to read-only. `FL_SW_CTL_RONLY` allows setting read/write access via web-interface configuration setting.<BR>`0` makes all  parameters that could be written writeable. **Do not use this option unless instructed otherwise!**|**FL_RONLY**<BR>**FL_SW_CTL_RONLY**<BR>**0**|
+| - | `#define NO_TLS` | TLS is used, for example, when connecting securely to remote MQTT brokers (only on ESP32). However, disabling TLS will save considerable amount of flash memory. Consider disabling TLS if you only connect to hosts in your local network and encounter flash memory shortage.||
+| - | `#define CUSTOM_PARTITION_TABLE` | When using a microcontroller with more than 4MB flash (such as the POE-ISO 16MB), you can activate this definement, so that BSB-LAN will compile with a partition scheme other than "Minimal SPIFFS".||
 
 ### Bus settings
 |Web-Interface|Configuration File|Functionality|Possible settings|
@@ -76,7 +78,7 @@ table th:nth-of-type(4) {
 |MAC address|`mac`|Set a fixed MAC address. Only relevant on Arduino.|**00:80:41:19:69:90** (`0x00, 0x80, 0x41, 0x19, 0x69, 0x90`)|
 |mDNS Hostname|`mDNS_hostname`|Hostname for mDNS discovery|**BSB-LAN** (`BSB-LAN`)|
 |HTTP authentification|`USER_PASS`|If not empty, this setting contains the username and password for HTTP authentification, separated by a colon.|**Username:Password** (`Username:Password`)|
-|URL Passkey|`PASSKEY`|Passkey adds a user-defined sequence that needs to be added to the URL after the hostname.<BR>For example, a passkey of `1234` requires every URL to be written as `http://bsb-lan.local/1234/` instead of just `http://bsb-lan.local/1234/`. Leave empty for no passkey.|**1234** (`1234`)|
+|URL Passkey|`PASSKEY`|Passkey adds a user-defined sequence that needs to be added to the URL after the hostname.<BR>For example, a passkey of `1234` requires every URL to be written as `http://bsb-lan.local/1234/` instead of just `http://bsb-lan.local/`. Leave empty for no passkey.|**1234** (`1234`)|
 |Trusted IP address|`trusted_ip_addr`|Access to BSB-LAN is only possible from this IP address. Same notation as with IP address.|**192.168.178.89** (`192,168,178,89`)|
 |Trusted IP address|`trusted_ip_addr2`|Access to BSB-LAN is only possible from this IP address. Same notation as with IP address.|**192.168.178.90** (`192,168,178,90`)|
 |[](){#BSSID}-|`bssid`|Enter a specific BSSID address here to ensure connecting to a specific access point. Set to all zeros under normal circumstances.|(`0x00, 0x00, 0x00, 0x00, 0x00, 0x00`)|

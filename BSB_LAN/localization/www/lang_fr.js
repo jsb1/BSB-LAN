@@ -108,6 +108,8 @@ UIStrings["MENU_TEXT_MCU"] = "Matériel";
 UIStrings["MENU_TEXT_BYT"] = "Octets";
 
 UIStrings["STR_24A_TEXT"] = "Moyenne 24h";
+UIStrings["S_ERROR"] = "Message d'erreur actuel";
+UIStrings["S_MAINT"] = "Signalisation de maintenance actuel";
 
 UIStrings["ENUM_CAT_00_TEXT"] = "Heure";
 UIStrings["ENUM_CAT_06_TEXT"] = "Progr. de commande horaire 1";
@@ -368,7 +370,7 @@ UIStrings["STR8831_TEXT"] = "Consigne actuelle de température ECS";
 UIStrings["STR8836_TEXT"] = "Température de charge ECS";
 UIStrings["STR8950_TEXT"] = "Signal de processus départ segment";
 UIStrings["STR8952_TEXT"] = "Signal de processus retour segment";
-UIStrings["STR8980_TEXT"] = "Température accumlateur mesurée partie haute (B4)";
+UIStrings["STR8980_TEXT"] = "Température accumulateur mesurée partie haute (B4)";
 UIStrings["STR9500_TEXT"] = "Temps de préventilation";
 UIStrings["STR9502_TEXT"] = "Modulation de l'air dans la préventilation";
 UIStrings["STR9504_TEXT"] = "Vitesse ventilateur dans la préventilation";

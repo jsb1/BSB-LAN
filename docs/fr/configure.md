@@ -44,12 +44,14 @@ table th:nth-of-type(4) {
 |-            |`#define LANG`          |Définir la langue|`DE`, `EN`, `FR` et autres codes de pays ISO|
 |**Afficher la configuration étendue**|-   |Afficher toutes les options de configuration|**On**<br>**Off**|
 |**Lire la configuration depuis l'EEPROM**|`UseEEPROM`|Lire la configuration depuis l'EEPROM ou le fichier|**On** (`1`)<br>**Off** (`0`)|
-|Niveau d'accès en écriture|-          |Si `DEFAULT_FLAG` est défini sur `FL_SW_CTL_RONLY`, définir le niveau d'accès en écriture ici.|**Off** (lecture seule)<br>**On (Standard)**<br>**On (Complet)**|
+|[](){#WriteAccess}Niveau d'accès en écriture|-          |Si `DEFAULT_FLAG` est défini sur `FL_SW_CTL_RONLY`, définir le niveau d'accès en écriture ici.|**Off** (lecture seule)<br>**On (Standard)**<br>**On (Complet)**|
 |Vérifier les mises à jour|`enable_version_check`|Interroger le serveur BSB-LAN pour une nouvelle version disponible|**On** (`true`)|
 |Mise à jour OTA|`enable_ota_update`   |Activer la mise à jour OTA (Over-The-Air)|**On** (`true`)|
 |Économie d'énergie|`esp32_save_energy`|Réduit la vitesse, économise l'énergie. Ne pas activer lors de l'utilisation du Wi-Fi.|**On** (`true`)<br>**Off** (`false`)|                        |
 | Système de fichiers du serveur Web | `webserver` | Active le service de fichiers depuis la carte SD | **On** (`true`) <br>**Off** (`false`) |
 | -            | `#define DEFAULT_FLAG` | Définir l'accès en lecture/écriture au système de chauffage. `FL_RONLY` définit tous les paramètres en lecture seule. `FL_SW_CTL_RONLY` permet de définir l'accès en lecture/écriture via le paramètre de configuration de l'interface web. <BR>`0` donne le droit de réécrire tous les paramètres pouvant être écrits. **Ne pas utiliser cette option sauf instruction contraire !** | **FL_RONLY** <BR>**FL_SW_CTL_RONLY** <BR>**0** |
+| -            | `#define NO_TLS` | Désactive TLS (uniquement sur l’ESP32). TLS est utilisé pour établir des connexions réseau sécurisées, par exemple vers des brokers MQTT externes. Cependant, cela consomme nettement plus de mémoire flash. Si tu ne te connectes qu’à des hôtes locaux et que la mémoire flash devient insuffisante, tu peux désactiver TLS avec cette directive. ||
+| - | `#define CUSTOM_PARTITION_TABLE` | Si tu utilises un microcontrôleur avec plus de 4 Mo de mémoire flash (comme le POE-ISO 16 Mo), tu peux activer cette directive afin que BSB-LAN soit compilé avec un schéma de partition différent de "Minimal SPIFFS". ||
 
 ### Paramètres de bus
 |Interface Web|Fichier de configuration|Fonctionnalité|Paramètres possibles|
